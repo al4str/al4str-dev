@@ -1,0 +1,13 @@
+{
+  "name": "al4str",
+  "version": "1.0.0",
+  "description": "Personal site repo",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "author": "al4str",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}

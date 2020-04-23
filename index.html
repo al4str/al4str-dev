@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta content="charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume</title>
+  <link rel="prefetch" as="font" href="/public/jetbrains-mono-regular.woff2">
+  <style>
+    @font-face {
+      font-family: "JetBrains Mono";
+      font-weight: 400;
+      src: url("/public/jetbrains-mono-regular.woff2") format('woff2');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: JetBrainsMono;
+      font-weight: 700;
+      src: url("/public/jetbrains-mono-bold.woff2") format('woff2');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: JetBrainsMono;
+      font-weight: 900;
+      src: url("/public/jetbrains-mono-extra-bold.woff2") format('woff2');
+      font-display: swap;
+    }
+    body {
+      margin: 0;
+      padding: 1.5rem;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      color: #f2f2f2;
+      font-size: 1rem;
+      line-height: 1.375;
+      font-family: JetBrainsMono, monospace;
+      background-color: #1a1b1e;
+    }
+    main {
+      width: 100%;
+      max-width: 48rem;
+      margin: 0 auto;
+      color: #cdcdcd;
+      font-size: 1.125rem;
+    }
+    a {
+      position: relative;
+      display: inline-block;
+      color: inherit;
+      text-decoration: none;
+    }
+    a:focus {
+      outline: 3px solid currentColor;
+      outline-offset: 3px;
+    }
+    a:hover {
+      color: #f2f2f2;
+      text-decoration: underline;
+    }
+    a[data-href] .get-message {
+      position: absolute;
+      top: calc(50% - (2px + 0.75rem * 1.375 + 2px) / 2);
+      left: 100%;
+      display: block;
+      margin-left: 0.75rem;
+      padding: 2px 6px;
+      color: #1a1b1e;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      background-color: #f2f2f2;
+      border-radius: 3px;
+      opacity: 0;
+      user-select: none;
+      pointer-events: none;
+      transition: opacity 0.15s;
+    }
+    a[data-href]:hover .get-message,
+    a[data-href]:focus .get-message {
+      opacity: 1;
+    }
+    h1 {
+      margin: 2rem 0;
+      color: #f2f2f2;
+      font-size: 4rem;
+      font-weight: 900;
+    }
+    h2 {
+      margin: 1.5rem 0;
+      color: #f2f2f2;
+      font-size: 3rem;
+      font-weight: 900;
+    }
+    h3 {
+      margin: 1.25rem 0;
+      color: #f2f2f2;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    p {
+      margin: 1.25rem 0;
+      line-height: 1.5;
+    }
+    ul {
+      margin: 0;
+      padding: 0 0 0 1.25rem;
+    }
+    li {
+      margin: 1.25rem 0;
+      padding: 0;
+      line-height: 1.5;
+    }
+    b {
+      font-weight: 900;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>
+    Alex Kasimov
+  </h1>
+  <ul>
+    <li>
+      <a
+        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-href="bWFpbHRvOmFsNHN0ci5mdHdAZ21haWwuY29t"
+        data-label="YWw0c3RyLmZ0d0BnbWFpbC5jb20"
+      >
+        **********@gmail.com
+        <span class="get-message">
+          Get e-mail
+        </span>
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-href="dGVsOis3OTIyNDcyMDcwNQ=="
+        data-label="KzcgKDkyMikgNDcyLTA3LTA1"
+      >
+        +7 (9**) ***-**-**
+        <span class="get-message">
+          Get phone
+        </span>
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://t.me/al4str"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        @al4str
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://maps.google.com/maps?q=Saint+Petersburg+Russia"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        St. Petersburg, Russia
+      </a>
+    </li>
+  </ul>
+  <h2>
+    Frontend Developer
+  </h2>
+  <p>
+    Leading frontend developer with more than 5 years of professional experience in designing and developing websites, applications, complex systems, libraries and tools for solving business problems, improving user experience, optimizing team&rsquo;s development and working processes.
+  </p>
+  <h2>
+    Key Skills
+  </h2>
+  <p>
+    <b>Web technologies</b>: HTML, CSS, JavaScript, Node.js, browser APIs and extensions.
+  </p>
+  <p>
+    <b>Frameworks and libraries</b>: React, Vue, Svelte, Express.js, Nuxt.js, GraphQL Apollo, Vuex, Redux, BEM, SCSS, PostCSS, Apache Cordova, Webpack.
+  </p>
+  <p>
+    <b>Tools</b>: DevTools, Git, Docker, IDEs, Lighthouse, Nginx, Photoshop, Illustrator, Linux.
+  </p>
+  <p>
+    <b>Development</b>: adaptive mobile-first markup, crafting component libraries, profiling and debugging, performance auditing and optimization, iterative refactoring and tech. debt liquidation, caching, network and efficient content delivery, working with graphics, internationalization (i18n), server-side rendering (ssr), accessibility (a11y), designing architecture, bundling and transpiling, code splitting, frontops and CI/CD.
+  </p>
+  <p>
+    <b>Transferable</b>: leadership and coordination of the development team, interviewing, code review, consultation of colleagues from neighboring teams, problems defining and solving, planning and reporting.
+  </p>
+  <h2>
+    Professional Experience
+  </h2>
+  <p>
+    5 years 9 months
+  </p>
+  <h3>
+    Sep. 2018 &mdash; Currently
+  </h3>
+  <p>
+    &ldquo;the_covert&rdquo;, St. Petersburg, Russia, Lead frontend developer
+  </p>
+  <ul>
+    <li>
+      Iteratively eliminated technical debt of legacy code (CoffeeScript, jQuery, Bootstrap CSS, obsolete Laravel templates) that accumulated over 5 years in a monolith app of highload multilingual digital media, thus speeding up development and reducing TTM, while still delivering new features.
+    </li>
+    <li>
+      Convinced business owners to make a smooth transition to the modern Nuxt.js application by presenting a prototype with average Lighthouse score 40 &plusmn; 5 (against &lt; 10 for the existing app). Further performance audit and optimization raised the score to 60+ without any work from the devops and backend teams.
+    </li>
+    <li>
+      Built from scratch a custom mobile-friendly CMS solution to easily construct articles from lego-like blocks, which reduced the cost to maintain a huge publisher team.
+    </li>
+  </ul>
+  <h3>
+    Mar. 2018 &mdash; Sep. 2018
+  </h3>
+  <p>
+    &ldquo;Building yard&rdquo;, Tyumen, Russia, Frontend developer
+  </p>
+  <ul>
+    <li>
+      Assembled a SPA application for managing automatically and manually generated complex filters for product lists of a construction and youth clothing stores to significantly reduce the time content teams spent on creating those filters and reduce the number of human errors during that process.
+    </li>
+    <li>
+      Developed a couple of small mini-games (awarding promo codes) to increase users involvement.
+    </li>
+  </ul>
+  <h3>
+    Nov. 2017 &mdash; Feb. 2018
+  </h3>
+  <p>
+    &ldquo;The Service&rdquo;, Tyumen, Russia, Fullstack developer
+  </p>
+  <ul>
+    <li>
+      With only a clean bare-metal server rack, one python guru and 2.5 months of work delivered MVP application that combines data (collected and analyzed by machine learning algorithms) and maps of major US cities to display statistics over map areas with a wide range of parameters: from the well-being of the selected neighborhood to vacancies and salaries inside one building.
+    </li>
+  </ul>
+  <h3>
+    Sep. 2016 &mdash; Oct. 2017
+  </h3>
+  <p>
+    &ldquo;Beton24&rdquo;, Simferopol, Ukraine, Lead frontend developer
+  </p>
+  <ul>
+    <li>
+      Designed and developed client layer of what later became one of the largest information and analytical portal for selection of suppliers of building materials covering 1700+ cities in Russia and the CIS countries.
+    </li>
+    <li>
+      Custom CRM interface for organizing interaction with leads, managing content, e-mail and sms mailing templates.
+    </li>
+    <li>
+      Crafted components library (vanilla untranspiled JavaScript) still powers the project&#39;s UI.
+    </li>
+  </ul>
+  <h3>
+    Oct. 2013 &mdash; Aug. 2016
+  </h3>
+  <p>
+    Job during (and after) university
+  </p>
+  <ul>
+    <li>
+      Over years, aced writing clean markups and polished skills of delivering interactive experience in the process of creating over 20+ landing pages, sites, applications of various complexity, deeply immersed in the industry of commercial development.
+    </li>
+  </ul>
+  <h2>
+    Education
+  </h2>
+  <p>
+    Sep. 2011 &mdash; June 2015
+  </p>
+  <p>
+    Tomsk State University of Control Systems and Radio electronics, Tomsk, Russia
+  </p>
+  <ul>
+    <li>
+      Bachelor&rsquo;s degree in Modeling and System Analysis
+    </li>
+    <li>
+      Candidate for Bachelor in Information System Security
+    </li>
+  </ul>
+</main>
+<script>
+  function handleLinkClick(e) {
+    e.preventDefault();
+    var link = e.target;
+    link.href = atob(link.dataset.href);
+    link.textContent = atob(link.dataset.label);
+    link.onclick = null;
+    link.removeAttribute('data-href');
+    link.removeAttribute('data-label');
+  }
+  window.onload = function() {
+    var links = window.document.querySelectorAll('a[data-href]');
+    for (var index in links) {
+      if (!links.hasOwnProperty(index)) continue;
+      links[index].onclick = handleLinkClick;
+    }
+  };
+</script>
+</body>
+</html>
