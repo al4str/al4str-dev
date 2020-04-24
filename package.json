@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Personal site repo",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "npx nodemon"
   },
   "author": "al4str",
   "license": "ISC",
@@ -11,6 +11,7 @@
     "url": "https://github.com/al4str/al4str-dev"
   },
   "devDependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3"
   }
 }

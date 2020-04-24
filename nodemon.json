@@ -1,0 +1,8 @@
+{
+  "signal": "SIGHUP",
+  "ext": "js",
+  "watch": [
+    "server.js"
+  ],
+  "exec": "node server.js"
+}
