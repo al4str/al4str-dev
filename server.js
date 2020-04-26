@@ -1,12 +1,14 @@
-const path = require('path');
 const express = require('express');
 
-const root = process.cwd();
 const app = express();
 
-app.use('/public', express.static('public'));
-app.get('/', (req, res) => {
-  res.sendFile(path.join(root, 'index.html'));
-});
+app.use(express.static('public', {
+  /*etag: false,
+  setHeaders: (res) => {
+    res.setHeader('Last-Modified', new Date().toISOString());
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+  },*/
+  index: ['index.html'],
+}));
 
 app.listen(3030, () => console.info('Server is running on `http://localhost:3030`'));
