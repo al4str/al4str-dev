@@ -1,11 +1,5 @@
 # TODO
 
-- turn on caching
-- meta tags
-  for sharing and micro-browsers
-- add iphone-like elements offset
-  use gyroscope on mobile
-  and mouse offset on desktops
 - showcase achievements
   test task chart
   test task gog.com
