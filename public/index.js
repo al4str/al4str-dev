@@ -34,7 +34,6 @@
       global.addEventListener('mousemove', handleMouseMove, options);
     }
     else if ('ondeviceorientation' in global) {
-      log('ondeviceorientation');
       global.addEventListener('deviceorientation', handleOrientationChange, options);
     }
   }
