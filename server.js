@@ -3,11 +3,11 @@ const express = require('express');
 const app = express();
 
 app.use(express.static('public', {
-  /*etag: false,
+  etag: false,
   setHeaders: (res) => {
     res.setHeader('Last-Modified', new Date().toISOString());
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
-  },*/
+  },
   index: ['index.html'],
 }));
 

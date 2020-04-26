@@ -127,10 +127,6 @@
       setCSSProperty(root, '--map-y', `${scrollY - y}px`);
     });
   }
-  // TODO: delete
-  function log(input) {
-    document.getElementById('log').textContent = JSON.stringify(input, null, 2);
-  }
 
   function handleLoad() {
     handleResize();
@@ -168,11 +164,8 @@
     setMapCoordinates();
   }
   function handleOrientationChange(e) {
-    log({
-      alpha: e.alpha,
-      beta: e.beta,
-      gamma: e.gamma,
-    });
+    pointerX = e.beta * 2;
+    pointerY = e.gamma * 3;
   }
 
   global.addEventListener('load', handleLoad);
