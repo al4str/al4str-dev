@@ -34,18 +34,7 @@
       global.addEventListener('mousemove', handleMouseMove, options);
     }
     else if ('ondeviceorientation' in global) {
-      if (typeof global.DeviceOrientationEvent.requestPermission === 'function') {
-        global.DeviceOrientationEvent
-          .requestPermission()
-          .then((response) => {
-            if (response === 'granted') {
-              global.addEventListener('deviceorientation', handleOrientationChange, options);
-            }
-          });
-      }
-      else {
-        global.addEventListener('deviceorientation', handleOrientationChange, options);
-      }
+      global.addEventListener('deviceorientation', handleOrientationChange, options);
     }
   }
   function getCSSProperty(el, name) {
