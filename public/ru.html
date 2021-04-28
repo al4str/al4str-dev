@@ -27,267 +27,8 @@
   <link rel="prefetch" as="font" href="jetbrains-mono-extra-bold.woff2">
   <link rel="prefetch" as="script" href="index.js">
   <link rel="preload" as="image" href="map.jpg">
-  <style>
-    :root {
-      --map-left: 0;
-      --map-width: 100%;
-      --map-height: 100%;
-      --map-perspective: 2500px;
-      --map-angle: 50deg;
-      --map-x: 0px;
-      --map-y: 0px;
-      --map-image: url("map.jpg");
-    }
-    @font-face {
-      font-family: "JetBrains Mono";
-      font-weight: 400;
-      src: url("jetbrains-mono-regular.woff2") format('woff2');
-      font-display: swap;
-    }
-    @font-face {
-      font-family: "JetBrains Mono";
-      font-weight: 400;
-      font-style: italic;
-      src: url("jetbrains-mono-italic.woff2") format('woff2');
-      font-display: swap;
-    }
-    @font-face {
-      font-family: JetBrainsMono;
-      font-weight: 700;
-      src: url("jetbrains-mono-bold.woff2") format('woff2');
-      font-display: swap;
-    }
-    @font-face {
-      font-family: JetBrainsMono;
-      font-weight: 900;
-      src: url("jetbrains-mono-extra-bold.woff2") format('woff2');
-      font-display: swap;
-    }
-    .body {
-      position: relative;
-      box-sizing: border-box;
-      width: 100%;
-      margin: 0;
-      padding: 2rem 0.75rem 0.75rem;
-      overflow-x: hidden;
-      overflow-y: scroll;
-      color: #f2f2f2;
-      font-size: 1rem;
-      line-height: 1.375;
-      font-family: JetBrainsMono, monospace;
-      background-color: #1a1b1e;
-    }
-    .map {
-      position: fixed;
-      z-index: 0;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      opacity: 0;
-      transform: scale(1.1);
-      transition:
-        opacity 1s,
-        transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-      backface-visibility: hidden;
-      pointer-events: none;
-      will-change: transform;
-    }
-    .map_loaded {
-      opacity: 0.3;
-      transform: scale(1);
-    }
-    .map__wrp {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      perspective: var(--map-perspective);
-      perspective-origin: center;
-      transform: translate(var(--map-x), var(--map-y));
-      backface-visibility: hidden;
-      will-change: transform;
-    }
-    .map__image {
-      position: absolute;
-      top: 0;
-      left: var(--map-left);
-      width: var(--map-width);
-      height: var(--map-height);
-      background: url("map.jpg") center no-repeat;
-      background-size: cover;
-      transform-origin: top center;
-      transform-style: preserve-3d;
-      transform: rotateX(var(--map-angle));
-      backface-visibility: hidden;
-    }
-    .backgrounds {
-      position: fixed;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      backface-visibility: hidden;
-      pointer-events: none;
-    }
-    .backgrounds__fade {
-      position: absolute;
-      left: 0;
-      width: 100%;
-    }
-    .backgrounds__fade_top {
-      top: 0;
-      height: 50%;
-      background: linear-gradient(#1a1b1e 0%, #1a1b1e00 100%);
-    }
-    .backgrounds__fade_bottom {
-      bottom: 0;
-      height: 30%;
-      background: linear-gradient(#1a1b1e00 0%, #1a1b1e 100%);
-    }
-    .backgrounds__noise {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url("noise.png") 0 0 repeat;
-    }
-    .backgrounds__stripes {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background:
-        linear-gradient(#12101000 50%, #00000040 0),
-        linear-gradient(90deg, #ff00000f, #00ff0005, #0000ff0f);
-      background-size:
-        100% 2px,
-        3px 100%;
-    }
-    .container {
-      position: relative;
-      z-index: 2;
-      box-sizing: border-box;
-      width: 100%;
-      max-width: 48rem;
-      margin: 0 auto;
-      color: #cdcdcd;
-      text-shadow: 0 0 0.5rem #1a1b1e;
-      word-wrap: break-word;
-    }
-    .link {
-      position: relative;
-      display: inline-block;
-      color: #f2f2f2;
-      text-decoration: none;
-    }
-    .link:focus {
-      outline: 3px solid currentColor;
-      outline-offset: 3px;
-    }
-    .link__label {
-      text-decoration: underline;
-      pointer-events: none;
-    }
-    .link__message {
-      position: absolute;
-      top: calc(50% - (2px + 0.75rem * 1.375 + 2px) / 2);
-      left: 100%;
-      display: none;
-      margin-left: 0.75rem;
-      padding: 2px 6px;
-      color: #1a1b1e;
-      text-transform: uppercase;
-      text-shadow: none;
-      font-size: 0.75rem;
-      white-space: nowrap;
-      background-color: #f2f2f2;
-      border-radius: 3px;
-      opacity: 0;
-      user-select: none;
-      pointer-events: none;
-      transition: opacity 0.15s;
-    }
-    .title-1 {
-      margin: 0 0 2rem;
-      color: #f2f2f2;
-      font-size: 2.5rem;
-      font-weight: 900;
-    }
-    .title-2 {
-      margin: 0 0 1.5rem;
-      color: #f2f2f2;
-      font-size: 1.75rem;
-      font-weight: 900;
-    }
-    .title-3 {
-      margin: 0 0 1.25rem;
-      color: #f2f2f2;
-      font-size: 1.25rem;
-      font-weight: 700;
-    }
-    .text {
-      margin: 1.25rem 0;
-      line-height: 1.5;
-    }
-    .list {
-      margin: 0;
-      padding: 0 0 0 1.25rem;
-    }
-    .list__item {
-      margin: 1.25rem 0;
-      padding: 0;
-      line-height: 1.5;
-    }
-    .bold {
-      font-weight: 900;
-    }
-    .italic {
-      font-style: italic;
-    }
-    .accent {
-      color: #f2f2f2;
-    }
-    @media (hover: hover) {
-      .link__label {
-        text-decoration: none;
-      }
-      .link:hover .link__label {
-        text-decoration: underline;
-      }
-      .link__message {
-        display: block;
-      }
-      .link_encrypted:hover .link__message,
-      .link_encrypted:focus .link__message {
-        opacity: 1;
-      }
-    }
-    @media (min-width: 800px) {
-      .body {
-        padding: 1.5rem;
-      }
-      .container {
-        padding: 1.5rem;
-        font-size: 1.125rem;
-      }
-      .title-1 {
-        font-size: 4rem;
-      }
-      .title-2 {
-        font-size: 3rem;
-      }
-      .title-3 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" media="screen" href="styles.css">
+  <link rel="stylesheet" media="print" href="print.css">
 </head>
 <body class="body">
 <div
@@ -308,10 +49,10 @@
   <div class="backgrounds__stripes"></div>
 </div>
 <main class="container">
-  <h1 class="title-1">
+  <h1 class="block title-1">
     Александр Касимов
   </h1>
-  <ul class="list">
+  <ul class="block list links">
     <li class="list__item">
       <a
         class="link link_encrypted"
@@ -390,54 +131,54 @@
       </a>
     </li>
   </ul>
-  <h2 class="title-2">
+  <h2 class="block title-2">
     Фронтенд разработчик
   </h2>
-  <p class="text">
+  <p class="block text">
     Ведущий разработчик с более чем 7-летним опытом проектирования и разработки веб сайтов, приложений, сложных систем, библиотек и инструментов для решения задач бизнеса, улучшения пользовательского опыта, оптимизации процессов разработки и работы команды.
   </p>
-  <h2 class="title-2">
+  <h2 class="block title-2">
     Ключевые навыки
   </h2>
-  <p class="text">
+  <p class="block text">
     <b class="bold accent">Веб технологии</b>: <i class="italic">HTML</i>, <i class="italic">CSS</i>, <i class="italic">JavaScript</i>, <i class="italic">Node.js</i>, браузерное API и расширения.
   </p>
-  <p class="text">
+  <p class="block text">
     <b class="bold accent">Фреймворки и библиотеки</b>: <i class="italic">React</i>, <i class="italic">Vue</i>, <i class="italic">Svelte</i>, <i class="italic">Express.js</i>, <i class="italic">Nuxt.js</i>, <i class="italic">GraphQL Apollo</i>, <i class="italic">Vuex</i>, <i class="italic">Redux</i>, <i class="italic">BEM</i>, <i class="italic">SCSS</i>, <i class="italic">PostCSS</i>, <i class="italic">Apache Cordova</i>, <i class="italic">Webpack</i>.
   </p>
-  <p class="text">
+  <p class="block text">
     <b class="bold accent">Инструменты</b>: DevTools, <i class="italic">Git</i>, <i class="italic">Docker</i>, IDEs, <i class="italic">Lighthouse</i>, <i class="italic">Nginx</i>, <i class="italic">Photoshop</i>, <i class="italic">Illustrator</i>, <i class="italic">Linux</i>.
   </p>
-  <p class="text">
+  <p class="block text">
     <b class="bold accent">Разработка</b>: адаптивная mobile-first вёрстка, создание библиотек компонентов, профилирование и debugging, аудит и оптимизация производительности, итеративный рефакторинг и ликвидация тех. долга, кэширование, сеть и эффективная доставка контента, работа с графикой, интернационализация (<i class="italic">i18n</i>), серверный рендеринг (<i class="italic">ssr</i>), доступность (<i class="italic">a11y</i>), проектирование архитектуры, сборка (*bundling/transpiling*), дробление кодовой базы (<i class="italic">code splitting</i>), фронтопс и CI/CD.
   </p>
-  <p class="text">
+  <p class="block text">
     <b class="bold accent">Коммуникация</b>: руководство и координирование команды разработки, проведение собеседований, код ревью, консультация коллег соседних команд, планирование и отчётность.
   </p>
-  <h2 class="title-2">
+  <h2 class="block title-2">
     Опыт работы
   </h2>
-  <p class="text">
+  <p class="block text">
     7 лет 6 месяцев
   </p>
-  <h3 class="title-3">
+  <h3 class="block title-3">
     Сентябрь 2020 — по настоящее время
   </h3>
-  <p class="text">
+  <p class="block text">
     “AdsPro Media”, Прага, Чехия, Удалёнка, Ведущий разработчик
   </p>
-  <ul class="list">
+  <ul class="block list">
     <li class="list__item">
       Переписываю успешное, но медленное монолитное приложение для улучшения производительности и снижения времени по разработке новых фич.
     </li>
   </ul>
-  <h3 class="title-3">
+  <h3 class="block title-3">
     Сентябрь 2018 — Сентябрь 2020
   </h3>
-  <p class="text">
+  <p class="block text">
     “Cointelegraph”, Нью Йорк, США, Ведущий разработчик
   </p>
-  <ul class="list">
+  <ul class="block list">
     <li class="list__item">
       Итеративно ликвидировал технический долг легаси кода (<i class="italic">CoffeeScript</i>, <i class="italic">jQuery</i>, <i class="italic">Bootstrap CSS</i>, устаревшие шаблоны <i class="italic">Laravel</i>), накопившийся в течение 5 лет в монолитном приложении высоконагруженного мультиязычного СМИ, тем самым ускорив разработку и уменьшив TTM, не прекращая доставку новых фич.
     </li>
@@ -448,13 +189,13 @@
       Разработал с нуля кастомное mobile-friendly CMS решение для лёгкого создания статей из лего-подобных блоков, что в свою очередь сократило расходы на содержание отдельной огромной команды паблишеров.
     </li>
   </ul>
-  <h3 class="title-3">
+  <h3 class="block title-3">
     Март 2018 — Сентябрь 2018
   </h3>
-  <p class="text">
+  <p class="block text">
     “Строительный Двор”, Тюмень, Фронтенд разработчик
   </p>
-  <ul class="list">
+  <ul class="block list">
     <li class="list__item">
       Написал SPA приложение для управления автоматически и вручную генерируемыми сложными фильтрами списков товаров строительного магазина и магазина молодёжной одежды, что сократило время, затрачиваемое командами контента на создание этих фильтров и сократило количество человеческих ошибок во время этого процесса.
     </li>
@@ -462,24 +203,24 @@
       Разработал пару-тройку небольших мини-игр (награждающих промокодами) для увеличения вовлечения пользователей.
     </li>
   </ul>
-  <h3 class="title-3">
+  <h3 class="block title-3">
     Ноябрь 2017 — Февраль 2018
   </h3>
-  <p class="text">
+  <p class="block text">
     “The Service”, Fullstack разработчик
   </p>
-  <ul class="list">
+  <ul class="block list">
     <li class="list__item">
       С чистой bare-metal серверной стойкой, одним гуру python-истом и 2.5 месяцев работы собрали MVP приложение, объединяющее данные (собранные и проанализированные алгоритмами машинного обучения) и карты крупных городов США для отображения статистики поверх них по широкому спектру параметров: от уровня благополучности выбранного микрорайона до вакансий и зарплат с точностью в рамках одного здания.
     </li>
   </ul>
-  <h3 class="title-3">
+  <h3 class="block title-3">
     Сентябрь 2016 — Октябрь 2017
   </h3>
-  <p class="text">
+  <p class="block text">
     “СтройПрайс” (ранее Бетон24), Симферополь, Ведущий разработчик
   </p>
-  <ul class="list">
+  <ul class="block list">
     <li class="list__item">
       Спроектировал и разработал клиентскую часть того, что в итоге станет одним из крупнейших информационно-аналитическим порталом по подбору поставщиков стройматериалов, охватывающего 1700+ городов в России и странах СНГ.
     </li>
@@ -490,27 +231,27 @@
       Разработанная библиотека компонентов (ванильный нетранспилированном JavaScript) до сих пор питает пользовательский интерфейс проекта.
     </li>
   </ul>
-  <h3 class="title-3">
+  <h3 class="block title-3">
     Октябрь 2013 — Август 2016
   </h3>
-  <p class="text">
+  <p class="block text">
     Рабочие места в течение (и после) учёбы
   </p>
-  <ul class="list">
+  <ul class="block list">
     <li class="list__item">
       С годами совершенствовал мастерство чистой вёрстки и отшлифовывал навыки доставки интерактивного опыта при создании 20+ лендингов, сайтов и приложений разной сложности, всё глубже погружаясь в индустрию коммерческой разработки.
     </li>
   </ul>
-  <h2 class="title-2">
+  <h2 class="block title-2">
     Образование
   </h2>
-  <p class="text">
+  <p class="block text">
     Сентябрь 2011 — Июнь 2015
   </p>
-  <p class="text">
+  <p class="block text">
     Томский государственный университет систем управления и радиоэлектроники
   </p>
-  <ul class="list">
+  <ul class="block list">
     <li class="list__item">
       Высшее образование (Бакалавр), Моделирование и системный анализ
     </li>
