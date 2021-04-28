@@ -2,7 +2,8 @@
   "signal": "SIGHUP",
   "ext": "js",
   "watch": [
-    "server.js"
+    "package.json",
+    "dev.js"
   ],
-  "exec": "node server.js"
+  "exec": "node dev.js"
 }
