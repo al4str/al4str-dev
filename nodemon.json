@@ -1,9 +1,11 @@
 {
   "signal": "SIGHUP",
-  "ext": "js",
+  "ext": "*",
   "watch": [
-    "package.json",
-    "dev.js"
+    "src/*",
+    "build.js",
+    "serve.js",
+    "package.json"
   ],
-  "exec": "node dev.js"
+  "exec": "node build.js && node serve.js"
 }

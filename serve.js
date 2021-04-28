@@ -6,7 +6,7 @@ const compression = require('compression');
 const serveStatic = require('serve-static');
 const consola = require('consola');
 
-const console = consola.withTag('server');
+const console = consola.withTag('serve');
 
 /**
  * @param {Object} params
@@ -30,21 +30,12 @@ function createServer(params) {
 
   const app = express();
 
-  app.use(compression({}));
+  app.use(compression());
 
   app.use(serveStatic(staticDir, {
-    setHeaders(res, filePath) {
-      const fileName = path.basename(filePath);
-      const isIndexHTML = fileName === 'index.html';
-      if (isIndexHTML) {
-        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-        res.setHeader('Pragma', 'no-cache');
-        res.setHeader('Expires', '0');
-      }
-      else {
-        res.setHeader('Cache-Control', 'public');
-        res.setHeader('Expires', '1y');
-      }
+    setHeaders(res) {
+      res.setHeader('Cache-Control', 'public');
+      res.setHeader('Expires', '1y');
     },
   }));
 
@@ -85,10 +76,25 @@ function createServer(params) {
   const staticDir = path.join(rootDir, 'public');
   const sslCert = path.join(rootDir, 'ssl', 'local.al4str.dev.pem');
   const sslKey = path.join(rootDir, 'ssl', 'local.al4str.dev-key.pem');
-  const indexHtml = path.join(staticDir, 'index.html');
+
   const indexMiddleware = (app) => {
-    app.get('*', (_, res) => {
-      res.sendFile(indexHtml);
+    app.get('/', (_, res) => {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+      res.sendFile(path.join(staticDir, 'en.html'));
+    });
+    app.get('/en', (_, res) => {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+      res.sendFile(path.join(staticDir, 'en.html'));
+    });
+    app.get('/ru', (_, res) => {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+      res.sendFile(path.join(staticDir, 'ru.html'));
     });
   };
 

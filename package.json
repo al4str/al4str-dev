@@ -3,7 +3,9 @@
   "version": "1.0.1",
   "description": "Personal site repo",
   "scripts": {
-    "dev": "npx nodemon"
+    "dev": "npx nodemon",
+    "build": "node build.js",
+    "start": "node serve.js"
   },
   "author": "al4str",
   "license": "ISC",
