@@ -30,12 +30,6 @@
   }
   function bindBackgroundMapHandlers() {
     global.addEventListener('scroll', handleScroll, options);
-    if (global.innerWidth > 800) {
-      global.addEventListener('mousemove', handleMouseMove, options);
-    }
-    else if ('ondeviceorientation' in global) {
-      global.addEventListener('deviceorientation', handleOrientationChange, options);
-    }
   }
   function getCSSProperty(el, name) {
     return getComputedStyle(el).getPropertyValue(name);
@@ -153,18 +147,9 @@
     link.classList.remove('link_encrypted');
     runDecryptAnimation(link, label);
   }
-  function handleMouseMove(e) {
-    pointerX = e.clientX;
-    pointerY = e.clientY;
-    setMapCoordinates();
-  }
   function handleScroll() {
     viewportScroll = global.pageYOffset;
     setMapCoordinates();
-  }
-  function handleOrientationChange(e) {
-    pointerX = e.beta * 2;
-    pointerY = e.gamma * 3;
   }
 
   global.addEventListener('load', handleLoad);
