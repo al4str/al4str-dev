@@ -1,0 +1,37 @@
+body {
+  font-size: 10pt;
+}
+
+.map,
+.backgrounds,
+.links {
+  display: none;
+}
+
+.title-1 {
+  font-size: 16pt;
+}
+
+.title-2 {
+  font-size: 14pt;
+}
+
+.title-3 {
+  font-size: 12pt;
+}
+
+.text {
+  page-break-inside: avoid;
+}
+
+.list {
+  page-break-inside: avoid;
+}
+
+.list__item + .list__item {
+  margin-top: 10pt;
+}
+
+.block + .block {
+  margin-top: 10pt;
+}
