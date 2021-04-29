@@ -5,49 +5,61 @@
 * It's bloody html page.
 * That's it. Go back to your job.
 * */
-(function(global) {
-  const root = global.document.documentElement;
-  const map = global.document.querySelector('.map');
-  const options = { passive: true, capture: false };
-  const mapURL = getCSSProperty(root, '--map-image')
-    .replace(/url\("(.+)"\)/, '$1');
-  const mapPerspective = parseInt(getCSSProperty(root, '--map-perspective'));
-  const mapAngle = parseInt(getCSSProperty(root, '--map-angle'));
+(function() {
+  const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /** @type {HTMLDivElement} */
+  const mapWrp = window.document.getElementById('mapWrp');
+  /** @type {HTMLImageElement} */
+  const map = window.document.getElementById('map');
+
   let mapHeight = 0;
-  let pointerX = global.innerWidth / 2;
-  let pointerY = global.innerHeight / 2;
-  let viewportScroll = global.pageYOffset;
-  let viewportWidth = global.innerWidth;
-  let viewportHeight = global.innerHeight;
-  let documentHeight = global.document.documentElement.offsetHeight;
-  let mapProjectedHeight = global.innerHeight;
+  let viewportScroll = window.pageYOffset;
+  let viewportHeight = window.innerHeight;
+  let documentHeight = window.document.documentElement.offsetHeight;
+  let mapProjectedHeight = window.innerHeight;
 
   function bindEncryptedLinkHandlers() {
-    const links = Array.from(global.document.querySelectorAll('.link_encrypted'));
+    const links = Array.from(window.document.querySelectorAll('.link_encrypted'));
     links.forEach((link) => {
       link.onclick = handleLinkClick;
     });
   }
   function bindBackgroundMapHandlers() {
-    global.addEventListener('scroll', handleScroll, options);
+    window.addEventListener('scroll', handleScroll);
   }
-  function getCSSProperty(el, name) {
-    return getComputedStyle(el).getPropertyValue(name);
-  }
-  function setCSSProperty(el, name, value) {
-    el.style.setProperty(name, value);
-  }
+
+  /**
+   * @param {string} string
+   * @return {string}
+   * */
   function getDecodedString(string) {
     const decoded = atob(string);
     return decoded.split('')
       .map((char) => char.charCodeAt(0))
-      .map((code, index) => code ^ (decoded.length - index))
+      .map((code, index) => {
+        /** @type {number} */
+        const charCode = code ^ (decoded.length - index);
+
+        return charCode;
+      })
       .map((code) => String.fromCharCode(code))
       .join('');
   }
+
+  /**
+   * @param {HTMLElement} el
+   * @param {string} string
+   * @return {void}
+   * */
   function runDecryptAnimation(el, string) {
+    if (REDUCED_MOTION) {
+      const label = el.querySelector('.link__label');
+      label.innerHTML = string;
+      return;
+    }
     const prevString = el.dataset.text;
-    const tempDiv = global.document.createElement('div');
+    const tempDiv = window.document.createElement('div');
     tempDiv.innerHTML = string;
     const nextString = tempDiv.textContent;
     const asteriskIndexes = prevString
@@ -69,33 +81,12 @@
       }, delayer * 50);
     });
   }
-  function loadMapImage() {
-    getLoadedImage(mapURL)
-      .then(({ naturalWidth, naturalHeight }) => {
-        if (!naturalWidth || !naturalHeight) {
-          return;
-        }
-        setCSSProperty(root, '--map-left', `calc(50% - ${naturalWidth / 2}px)`);
-        setCSSProperty(root, '--map-width', `${naturalWidth}px`);
-        setCSSProperty(root, '--map-height', `${naturalHeight}px`);
-        mapHeight = naturalHeight;
-        map.classList.add('map_loaded');
-        setMapProjectedHeight();
-        setMapCoordinates();
-      });
-  }
-  function getLoadedImage(url) {
-    return new Promise((resolve) => {
-      const img = global.document.createElement('img');
-      img.onload = () => {
-        resolve(img);
-      };
-      img.src = url;
-      if (img.complete) {
-        resolve(img);
-      }
-    });
-  }
+  /**
+   * @param {number} coordinate
+   * @param {number} angle
+   * @param {number} perspective
+   * @return {number}
+   * */
   function getProjectedCoordinate(coordinate, angle, perspective) {
     const x = Math.cos(angle) * coordinate;
     const z = Math.sin(angle) * coordinate;
@@ -103,37 +94,50 @@
   }
   function setMapProjectedHeight() {
     const height = mapHeight;
-    const perspective = mapPerspective;
-    const angle = mapAngle * Math.PI / 180;
-    let top = getProjectedCoordinate(0 - height / 2, angle, perspective);
-    let bottom = getProjectedCoordinate(height - height / 2, angle, perspective);
+    const perspective = 2500;
+    let top = getProjectedCoordinate(0 - height / 2, 0, perspective);
+    let bottom = getProjectedCoordinate(height - height / 2, 0, perspective);
     mapProjectedHeight = (bottom + height / 2) - (top + height / 2);
   }
   function setMapCoordinates() {
     requestAnimationFrame(() => {
-      const halfViewportWidth = viewportWidth / 2;
-      const halfViewportHeight = viewportHeight / 2;
-      const x = -3 * (pointerX - halfViewportWidth) / halfViewportWidth;
-      const y = -3 * (pointerY - halfViewportHeight) / halfViewportHeight;
       const scrollY = -1 * ((viewportScroll * (mapProjectedHeight - viewportHeight)) / (documentHeight - viewportHeight));
-      setCSSProperty(root, '--map-x', `${x}px`);
-      setCSSProperty(root, '--map-y', `${scrollY - y}px`);
+      map.setAttribute('style', `transform: translate3d(-50%, ${scrollY.toFixed(1)}px, 0)`);
     });
   }
 
   function handleLoad() {
-    handleResize();
     bindEncryptedLinkHandlers();
+    if (REDUCED_MOTION) {
+      return;
+    }
     bindBackgroundMapHandlers();
-    loadMapImage();
+    map.onload = handleMapLoad;
+    if (map.complete) {
+      handleMapLoad();
+    }
+    handleResize();
+  }
+  function handleMapLoad() {
+    const { naturalWidth, naturalHeight } = map;
+    mapHeight = naturalHeight;
+    map.width = naturalWidth;
+    map.height = naturalHeight;
+    setMapProjectedHeight();
+    setMapCoordinates();
+    mapWrp.ontransitionend = () => {
+      mapWrp.classList.add('map_ready');
+      mapWrp.ontransitionend = null;
+    };
+    mapWrp.classList.add('map_loaded');
   }
   function handleResize() {
-    viewportScroll = global.pageYOffset;
-    viewportWidth = global.innerWidth;
-    viewportHeight = global.innerHeight;
-    documentHeight = global.document.documentElement.scrollHeight;
+    viewportScroll = window.pageYOffset;
+    viewportHeight = window.innerHeight;
+    documentHeight = window.document.documentElement.scrollHeight;
     setMapCoordinates();
   }
+  /** @param {MouseEvent} e */
   function handleLinkClick(e) {
     if (!e.isTrusted) {
       return;
@@ -148,10 +152,10 @@
     runDecryptAnimation(link, label);
   }
   function handleScroll() {
-    viewportScroll = global.pageYOffset;
+    viewportScroll = Math.max(0, Math.min(window.pageYOffset, window.document.body.scrollHeight));
     setMapCoordinates();
   }
 
-  global.addEventListener('load', handleLoad);
-  global.addEventListener('resize', handleResize, options);
-}(window));
+  window.addEventListener('load', handleLoad);
+  window.addEventListener('resize', handleResize);
+}());
