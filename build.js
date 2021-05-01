@@ -40,7 +40,7 @@ async function writeHTML(lang) {
       return html.replace(keyRegExp, escapedValue);
     }, rawHTML)
     .replace(/\*\*([-.\w\d\sа-яё]+)\*\*/gi, '<b class="bold accent">$1</b>')
-    .replace(/\*([-.\w\d\sа-яё]+)\*/gi, '<i class="italic">$1</i>')
+    .replace(/\*([-.\w\d\sа-яё]+)\*/gi, '<span>$1</span>')
     .replace('{{css}}', `<style>@media screen{${minifiedCss}</style>`);
   const [, templatesLeft] = replacedHTML.match(/{{([-.\w\d]+)}}/g) || [];
   if (templatesLeft) {
@@ -51,6 +51,7 @@ async function writeHTML(lang) {
   const minifiedHTML = htmlMinifier.minify(replacedHTML, {
     collapseWhitespace: true,
     collapseInlineTagWhitespace: true,
+    conservativeCollapse: true,
   });
   await fs.writeFile(htmlPath, minifiedHTML);
 }
@@ -72,8 +73,6 @@ async function minifyJS() {
       'favicon-16x16.png',
       'favicon-32x32.png',
       'jetbrains-mono-bold.woff2',
-      'jetbrains-mono-extra-bold.woff2',
-      'jetbrains-mono-italic.woff2',
       'jetbrains-mono-regular.woff2',
       'map.jpg',
       'noise.png',
