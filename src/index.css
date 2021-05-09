@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "JetBrains Mono";
+  font-family: JetBrainsMono;
   font-weight: 400;
   src: url("jetbrains-mono-regular.woff2") format('woff2');
   font-display: swap;
