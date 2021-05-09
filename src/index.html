@@ -29,239 +29,224 @@
   {{css}}
 </head>
 <body class="body">
-<div
-  class="parallax"
-  aria-hidden="true"
->
-  <div class="parallax__wrapper">
-    <img
-      class="parallax__image"
-      id="parallax-image"
-      src="map.jpg"
-      alt="Background image of blurred map"
-    >
-  </div>
-</div>
-<div
-  class="backgrounds"
-  aria-hidden="true"
->
-  <div class="backgrounds__fade backgrounds__fade_top"></div>
-  <div class="backgrounds__fade backgrounds__fade_bottom"></div>
-  <div class="backgrounds__noise"></div>
-  <div class="backgrounds__stripes"></div>
+<div class="parallax">
+  <div class="parallax__image"></div>
 </div>
 <main class="container">
-  <h1 class="block title-1">
-    {{title}}
-  </h1>
-  <ul class="block list links">
-    <li class="list__item">
-      <a
-        class="link link_encrypted"
-        href="javascript:void(0);"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-href="dntwdGN5L3V/JmJkfSBreHxKbmVmb2kqYG1s"
-        data-label="dX8mYmR9IGt4fEpuZWZvaSpgbWw"
-        data-text="∗∗∗∗∗∗∗∗∗∗@gmail.com"
-        aria-label="{{actions.email.label}}"
-      >
-        <span class="link__label">
-          &lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;@gmail.com
-        </span>
-        <span class="link__message">
-          {{actions.email.tip}}
-        </span>
-      </a>
-    </li>
-    <li class="list__item">
-      <a
-        class="link link_encrypted"
-        href="javascript:void(0);"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-href="ZGpiNyc8Mzs6MzE3NDQyNA=="
-        data-label="Cyg4aXRydGpoLD4sJiE7N2RnZ2N/ezE9PzUrNTMuMjQ="
-        data-text="+7 (∗∗∗) ∗∗∗-∗∗-∗∗"
-        aria-label="{{actions.phone.label}}"
-      >
-        <span class="link__label">
-          +7&thinsp;(&lowast;&lowast;&lowast;)&thinsp;&lowast;&lowast;&lowast;-&lowast;&lowast;-&lowast;&lowast;
-        </span>
-        <span class="link__message">
-          {{actions.phone.tip}}
-        </span>
-      </a>
-    </li>
-    <li class="list__item">
-      <a
-        class="link"
-        href="https://t.me/al4str"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="{{actions.telegram.label}}"
-      >
-        <span class="link__label">
-          @al4str
-        </span>
-      </a>
-    </li>
-    <li class="list__item">
-      <a
-        class="link"
-        href="https://github.com/al4str"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="{{actions.github.label}}"
-      >
-        <span class="link__label">
-          github.com
-        </span>
-      </a>
-    </li>
-    <li class="list__item">
-      <a
-        class="link"
-        href="https://maps.google.com/maps?q=Saint+Petersburg+Russia"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="{{actions.location.label}}"
-      >
-        <span class="link__label">
-          {{actions.location.content}}
-        </span>
-      </a>
-    </li>
-  </ul>
-  <h2 class="block title-2">
-    {{about.title}}
-  </h2>
-  <p class="block text">
-    {{about.text}}
-  </p>
-  <h2 class="block title-2">
-    {{skills.title}}
-  </h2>
-  <p class="block text">
-    {{skills.web-tech.text}}
-  </p>
-  <p class="block text">
-    {{skills.libs.text}}
-  </p>
-  <p class="block text">
-    {{skills.tools.text}}
-  </p>
-  <p class="block text">
-    {{skills.dev.text}}
-  </p>
-  <p class="block text">
-    {{skills.trans.text}}
-  </p>
-  <h2 class="block title-2">
-    {{xp.title}}
-  </h2>
-  <p class="block text">
-    {{xp.time}}
-  </p>
-  <h3 class="block title-3">
-    {{xp.sep-2020-curr.title}}
-  </h3>
-  <p class="block text">
-    {{xp.sep-2020-curr.position}}
-  </p>
-  <ul class="block list">
-    <li class="list__item">
-      {{xp.sep-2020-curr.feat-1}}
-    </li>
-  </ul>
-  <h3 class="block title-3">
-    {{xp.sep-2018-sep-2020.title}}
-  </h3>
-  <p class="block text">
-    {{xp.sep-2018-sep-2020.position}}
-  </p>
-  <ul class="block list">
-    <li class="list__item">
-      {{xp.sep-2018-sep-2020.feat-1}}
-    </li>
-    <li class="list__item">
-      {{xp.sep-2018-sep-2020.feat-2}}
-    </li>
-    <li class="list__item">
-      {{xp.sep-2018-sep-2020.feat-3}}
-    </li>
-  </ul>
-  <h3 class="block title-3">
-    {{xp.mar-2018-sep-2018.title}}
-  </h3>
-  <p class="block text">
-    {{xp.mar-2018-sep-2018.position}}
-  </p>
-  <ul class="block list">
-    <li class="list__item">
-      {{xp.mar-2018-sep-2018.feat-1}}
-    </li>
-    <li class="list__item">
-      {{xp.mar-2018-sep-2018.feat-2}}
-    </li>
-  </ul>
-  <h3 class="block title-3">
-    {{xp.nov-2017-feb-2018.title}}
-  </h3>
-  <p class="block text">
-    {{xp.nov-2017-feb-2018.position}}
-  </p>
-  <ul class="block list">
-    <li class="list__item">
-      {{xp.nov-2017-feb-2018.feat-1}}
-    </li>
-  </ul>
-  <h3 class="block title-3">
-    {{xp.sep-2016-oct-2017.title}}
-  </h3>
-  <p class="block text">
-    {{xp.sep-2016-oct-2017.position}}
-  </p>
-  <ul class="block list">
-    <li class="list__item">
-      {{xp.sep-2016-oct-2017.feat-1}}
-    </li>
-    <li class="list__item">
-      {{xp.sep-2016-oct-2017.feat-2}}
-    </li>
-    <li class="list__item">
-      {{xp.sep-2016-oct-2017.feat-3}}
-    </li>
-  </ul>
-  <h3 class="block title-3">
-    {{xp.oct-2013-aug-2016.title}}
-  </h3>
-  <p class="block text">
-    {{xp.oct-2013-aug-2016.position}}
-  </p>
-  <ul class="block list">
-    <li class="list__item">
-      {{xp.oct-2013-aug-2016.feat-1}}
-    </li>
-  </ul>
-  <h2 class="block title-2">
-    {{edu.title}}
-  </h2>
-  <p class="block text">
-    {{edu.period}}
-  </p>
-  <p class="block text">
-    {{edu.university}}
-  </p>
-  <ul class="block list">
-    <li class="list__item">
-      {{edu.bachelor}}
-    </li>
-    <li class="list__item">
-      {{edu.candidate}}
-    </li>
-  </ul>
+  <span class="fade fade_top"></span>
+  <span class="fade fade_bottom"></span>
+  <article class="content">
+    <h1 class="block title-1">
+      {{title}}
+    </h1>
+    <ul class="block list links">
+      <li class="list__item">
+        <a
+          class="link link_encrypted"
+          href="javascript:void(0);"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-href="dntwdGN5L3V/JmJkfSBreHxKbmVmb2kqYG1s"
+          data-label="dX8mYmR9IGt4fEpuZWZvaSpgbWw"
+          data-text="∗∗∗∗∗∗∗∗∗∗@gmail.com"
+          aria-label="{{actions.email.label}}"
+        >
+          <span class="link__label">
+            &lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;&lowast;@gmail.com
+          </span>
+          <span class="link__message">
+            {{actions.email.tip}}
+          </span>
+        </a>
+      </li>
+      <li class="list__item">
+        <a
+          class="link link_encrypted"
+          href="javascript:void(0);"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-href="ZGpiNyc8Mzs6MzE3NDQyNA=="
+          data-label="Cyg4aXRydGpoLD4sJiE7N2RnZ2N/ezE9PzUrNTMuMjQ="
+          data-text="+7 (∗∗∗) ∗∗∗-∗∗-∗∗"
+          aria-label="{{actions.phone.label}}"
+        >
+          <span class="link__label">
+            +7&thinsp;(&lowast;&lowast;&lowast;)&thinsp;&lowast;&lowast;&lowast;-&lowast;&lowast;-&lowast;&lowast;
+          </span>
+          <span class="link__message">
+            {{actions.phone.tip}}
+          </span>
+        </a>
+      </li>
+      <li class="list__item">
+        <a
+          class="link"
+          href="https://t.me/al4str"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="{{actions.telegram.label}}"
+        >
+          <span class="link__label">
+            @al4str
+          </span>
+        </a>
+      </li>
+      <li class="list__item">
+        <a
+          class="link"
+          href="https://github.com/al4str"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="{{actions.github.label}}"
+        >
+          <span class="link__label">
+            github.com
+          </span>
+        </a>
+      </li>
+      <li class="list__item">
+        <a
+          class="link"
+          href="https://maps.google.com/maps?q=Saint+Petersburg+Russia"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="{{actions.location.label}}"
+        >
+          <span class="link__label">
+            {{actions.location.content}}
+          </span>
+        </a>
+      </li>
+    </ul>
+    <h2 class="block title-2">
+      {{about.title}}
+    </h2>
+    <p class="block text">
+      {{about.text}}
+    </p>
+    <h2 class="block title-2">
+      {{skills.title}}
+    </h2>
+    <p class="block text">
+      {{skills.web-tech.text}}
+    </p>
+    <p class="block text">
+      {{skills.libs.text}}
+    </p>
+    <p class="block text">
+      {{skills.tools.text}}
+    </p>
+    <p class="block text">
+      {{skills.dev.text}}
+    </p>
+    <p class="block text">
+      {{skills.trans.text}}
+    </p>
+    <h2 class="block title-2">
+      {{xp.title}}
+    </h2>
+    <p class="block text">
+      {{xp.time}}
+    </p>
+    <h3 class="block title-3">
+      {{xp.sep-2020-curr.title}}
+    </h3>
+    <p class="block text">
+      {{xp.sep-2020-curr.position}}
+    </p>
+    <ul class="block list">
+      <li class="list__item">
+        {{xp.sep-2020-curr.feat-1}}
+      </li>
+    </ul>
+    <h3 class="block title-3">
+      {{xp.sep-2018-sep-2020.title}}
+    </h3>
+    <p class="block text">
+      {{xp.sep-2018-sep-2020.position}}
+    </p>
+    <ul class="block list">
+      <li class="list__item">
+        {{xp.sep-2018-sep-2020.feat-1}}
+      </li>
+      <li class="list__item">
+        {{xp.sep-2018-sep-2020.feat-2}}
+      </li>
+      <li class="list__item">
+        {{xp.sep-2018-sep-2020.feat-3}}
+      </li>
+    </ul>
+    <h3 class="block title-3">
+      {{xp.mar-2018-sep-2018.title}}
+    </h3>
+    <p class="block text">
+      {{xp.mar-2018-sep-2018.position}}
+    </p>
+    <ul class="block list">
+      <li class="list__item">
+        {{xp.mar-2018-sep-2018.feat-1}}
+      </li>
+      <li class="list__item">
+        {{xp.mar-2018-sep-2018.feat-2}}
+      </li>
+    </ul>
+    <h3 class="block title-3">
+      {{xp.nov-2017-feb-2018.title}}
+    </h3>
+    <p class="block text">
+      {{xp.nov-2017-feb-2018.position}}
+    </p>
+    <ul class="block list">
+      <li class="list__item">
+        {{xp.nov-2017-feb-2018.feat-1}}
+      </li>
+    </ul>
+    <h3 class="block title-3">
+      {{xp.sep-2016-oct-2017.title}}
+    </h3>
+    <p class="block text">
+      {{xp.sep-2016-oct-2017.position}}
+    </p>
+    <ul class="block list">
+      <li class="list__item">
+        {{xp.sep-2016-oct-2017.feat-1}}
+      </li>
+      <li class="list__item">
+        {{xp.sep-2016-oct-2017.feat-2}}
+      </li>
+      <li class="list__item">
+        {{xp.sep-2016-oct-2017.feat-3}}
+      </li>
+    </ul>
+    <h3 class="block title-3">
+      {{xp.oct-2013-aug-2016.title}}
+    </h3>
+    <p class="block text">
+      {{xp.oct-2013-aug-2016.position}}
+    </p>
+    <ul class="block list">
+      <li class="list__item">
+        {{xp.oct-2013-aug-2016.feat-1}}
+      </li>
+    </ul>
+    <h2 class="block title-2">
+      {{edu.title}}
+    </h2>
+    <p class="block text">
+      {{edu.period}}
+    </p>
+    <p class="block text">
+      {{edu.university}}
+    </p>
+    <ul class="block list">
+      <li class="list__item">
+        {{edu.bachelor}}
+      </li>
+      <li class="list__item">
+        {{edu.candidate}}
+      </li>
+    </ul>
+  </article>
 </main>
 <script defer src="index.js?{{version}}"></script>
 </body>
