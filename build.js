@@ -6,6 +6,9 @@ const babel = require('@babel/core');
 const jsMinifier = require('terser');
 const cssMinifier = require('csso');
 const htmlMinifier = require('html-minifier-terser');
+const info = require('./package.json');
+
+const version = info.version;
 
 const console = consola.withTag('build');
 
@@ -32,6 +35,7 @@ async function writeHTML(lang) {
   /** @type {string} */
   const replacedHTML = Object
     .entries(translation)
+    .concat([['version', version]])
     .concat([['lang', lang]])
     .reduce((html, [key, value]) => {
       const keyRegExp = new RegExp(`{{${key}}}`, 'g');

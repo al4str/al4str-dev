@@ -23,7 +23,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="prefetch" as="font" href="jetbrains-mono-regular.woff2">
   <link rel="prefetch" as="font" href="jetbrains-mono-bold.woff2">
-  <link rel="prefetch" as="script" href="index.js?{{version-query}}">
+  <link rel="prefetch" as="script" href="index.js?{{version}}">
   <link rel="preload" as="image" href="map.jpg">
   <link rel="stylesheet" media="print" href="print.css">
   {{css}}
@@ -263,6 +263,6 @@
     </li>
   </ul>
 </main>
-<script defer src="index.js"></script>
+<script defer src="index.js?{{version}}"></script>
 </body>
 </html>
