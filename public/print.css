@@ -2,8 +2,9 @@ body {
   font-size: 10pt;
 }
 
-.map,
-.backgrounds,
+.parallax,
+.fade,
+.actions,
 .links {
   display: none;
 }
