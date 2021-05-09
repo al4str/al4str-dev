@@ -1,6 +1,9 @@
 {
   "meta.title": "Alex Kasimov, a Frontend Developer from St. Petersburg",
   "title": "Alex Kasimov",
+  "actions.ru.label": "Link to Russian version",
+  "actions.en.label": "Link to English version",
+  "actions.print.label": "Print current page",
   "actions.email.label": "Click to get e-mail",
   "actions.email.tip": "Get e-mail",
   "actions.phone.label": "Click to get phone",

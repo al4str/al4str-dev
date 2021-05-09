@@ -1,6 +1,9 @@
 {
   "meta.title": "Александр Касимов, фронтенд разработчик из Санкт-Петербурга",
   "title": "Александр Касимов",
+  "actions.ru.label": "Ссылка на русскую версию",
+  "actions.en.label": "Ссылка на английскую версию",
+  "actions.print.label": "Распечатать текущую страницу",
   "actions.email.label": "Нажать для получения e-mail",
   "actions.email.tip": "Получить e-mail",
   "actions.phone.label": "Нажать для получения телефона",
