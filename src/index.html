@@ -25,7 +25,7 @@
   <link rel="prefetch" as="font" href="jetbrains-mono-bold.woff2">
   <link rel="prefetch" as="script" href="index.js?{{version}}">
   <link rel="preload" as="image" href="map.jpg">
-  <link rel="stylesheet" media="print" href="print.css">
+  <link rel="stylesheet" media="print" href="print.css?{{version}}">
   {{css}}
 </head>
 <body class="body">
@@ -36,16 +36,25 @@
   <span class="fade fade_top" aria-hidden="true"></span>
   <span class="fade fade_bottom" aria-hidden="true"></span>
   <article class="content">
-    <ul class="block lang-list">
-      <li class="lang-list__item">
-        <a class="lang-list__link" lang="ru" href="/ru">
-          РУС
+    <ul class="block actions">
+      <li class="actions__item">
+        <a class="link" lang="ru" href="/ru">
+          <span class="link__label">
+            РУС
+          </span>
         </a>
       </li>
-      <li class="lang-list__item">
-        <a class="lang-list__link" lang="en" href="/en">
-          ENG
+      <li class="actions__item">
+        <a class="link" lang="en" href="/en">
+          <span class="link__label">
+            ENG
+          </span>
         </a>
+      </li>
+      <li class="actions__item">
+        <button class="button" type="button" onclick="print();">
+          <span class="icon-print"></span>
+        </button>
       </li>
     </ul>
     <h1 class="block title-1">
