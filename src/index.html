@@ -29,13 +29,25 @@
   {{css}}
 </head>
 <body class="body">
-<div class="parallax">
+<div class="parallax" aria-hidden="true">
   <div class="parallax__image"></div>
 </div>
 <main class="container">
-  <span class="fade fade_top"></span>
-  <span class="fade fade_bottom"></span>
+  <span class="fade fade_top" aria-hidden="true"></span>
+  <span class="fade fade_bottom" aria-hidden="true"></span>
   <article class="content">
+    <ul class="block lang-list">
+      <li class="lang-list__item">
+        <a class="lang-list__link" lang="ru" href="/ru">
+          РУС
+        </a>
+      </li>
+      <li class="lang-list__item">
+        <a class="lang-list__link" lang="en" href="/en">
+          ENG
+        </a>
+      </li>
+    </ul>
     <h1 class="block title-1">
       {{title}}
     </h1>

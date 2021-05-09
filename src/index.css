@@ -79,6 +79,29 @@
   margin: 0 auto;
 }
 
+.lang-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lang-list__item {
+  padding: 0;
+}
+
+.lang-list__item + .lang-list__item {
+  margin-left: 1rem;
+}
+
+.lang-list__link {
+  color: inherit;
+}
+html[lang="en"] .lang-list__link[lang="en"],
+html[lang="ru"] .lang-list__link[lang="ru"] {
+  color: #f2f2f2;
+}
+
 .link {
   position: relative;
   display: inline-block;
