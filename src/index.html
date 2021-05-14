@@ -24,13 +24,30 @@
   <link rel="prefetch" as="font" href="jetbrains-mono-regular.woff2">
   <link rel="prefetch" as="font" href="jetbrains-mono-bold.woff2">
   <link rel="prefetch" as="script" href="index.js?{{version}}">
-  <link rel="preload" as="image" href="map.jpg">
   <link rel="stylesheet" media="print" href="print.css?{{version}}">
   {{css}}
 </head>
 <body class="body">
 <div class="parallax" aria-hidden="true">
-  <div class="parallax__image"></div>
+  <img
+    class="parallax__image"
+    src="map-2000w.jpg"
+    srcset="map-320w.jpg 320w,
+      map-400w.jpg 400w,
+      map-480w.jpg 480w,
+      map-800w.jpg 800w,
+      map-1200w.jpg 1200w,
+      map-1600w.jpg 1600w,
+      map-2000w.jpg 2000w"
+    sizes="(max-width: 320px) 320px,
+      (max-width: 399px) 400px,
+      (max-width: 479px) 480px,
+      (max-width: 799px) 800px,
+      (max-width: 1199px) 1200px,
+      (max-width: 1599px) 1600px,
+      2000px"
+    alt="Background image of blurred map"
+  >
 </div>
 <main class="container">
   <span class="fade fade_top" aria-hidden="true"></span>

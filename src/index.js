@@ -9,6 +9,7 @@
     viewportHeight: window.innerHeight,
     imageHeight: 2500,
   };
+  const RAF = getThrottledRAF();
 
   /**
    * @param {string} string
@@ -65,20 +66,40 @@
       });
   }
 
+  /**
+   * @return function(Function): void
+   * */
+  function getThrottledRAF() {
+    let queuedCallback = null;
+
+    return (nextCallback) => {
+      if (typeof queuedCallback !== 'function') {
+        window.requestAnimationFrame(() => {
+          const lastCallback = queuedCallback;
+          queuedCallback = null;
+          lastCallback();
+        });
+      }
+      queuedCallback = nextCallback;
+    };
+  }
+
   function updateParallaxParams() {
     PARALLAX_PARAMS.scrollHeight = window.document.body.scrollHeight;
     PARALLAX_PARAMS.viewportHeight = window.innerHeight;
   }
 
   function updateParallaxPosition() {
-    const {
-      scrollTop,
-      scrollHeight,
-      viewportHeight,
-      imageHeight,
-    } = PARALLAX_PARAMS;
-    const y = -1 * (imageHeight - viewportHeight) * (scrollTop / scrollHeight);
-    PARALLAX_IMAGE.style.transform = `translate3d(0, ${y}px, 0)`;
+    RAF(() => {
+      const {
+        scrollTop,
+        scrollHeight,
+        viewportHeight,
+        imageHeight,
+      } = PARALLAX_PARAMS;
+      const y = -1 * (imageHeight - viewportHeight) * (scrollTop / scrollHeight);
+      PARALLAX_IMAGE.style.transform = `translate3d(0, ${y}px, 0)`;
+    });
   }
 
   function handleResize() {
@@ -109,13 +130,9 @@
   window.document
     .querySelectorAll('.link_encrypted')
     .forEach((link) => link.onclick = handleLinkClick);
-  window.addEventListener('resize', handleResize, {
-    passive: true,
-  });
   if (!REDUCED_MOTION) {
-    window.addEventListener('scroll', handleScroll, {
-      passive: true,
-    });
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll);
     updateParallaxPosition();
   }
 }());
