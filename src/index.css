@@ -27,6 +27,7 @@
 }
 
 .parallax {
+  contain: content;
   position: fixed;
   top: 0;
   left: 0;
@@ -36,7 +37,6 @@
   pointer-events: none;
   opacity: 0.3;
 }
-
 .parallax__image {
   position: absolute;
   top: 0;
@@ -74,6 +74,14 @@
   background: linear-gradient(#1a1b1e00 0%, #1a1b1e 100%);
 }
 
+b {
+  font-weight: 700;
+}
+
+i {
+  font-style: normal;
+}
+
 .content {
   position: relative;
   width: 100%;
@@ -81,39 +89,69 @@
   margin: 0 auto;
 }
 
-.actions {
+.header {
   display: flex;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  align-items: center;
 }
 
-.actions__item {
-  padding: 0;
+*:focus {
+  outline: none;
 }
-.actions__item:first-child {
-  margin-left: auto;
-}
-.actions__item + .actions__item {
-  margin-left: 1rem;
+
+*:focus-visible {
+  outline: 2px solid #f2f2f2;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .button {
+  box-sizing: border-box;
+  display: block;
+  margin: 0;
   padding: 0;
+  height: auto;
+  width: auto;
+  overflow: hidden;
+  font: inherit;
+  text-align: inherit;
+  text-transform: inherit;
+  line-height: inherit;
   background: transparent;
+  border-radius: 0;
   border: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+  appearance: none;
+  user-select: none;
   cursor: pointer;
 }
-.button:focus {
-  outline: 3px solid #f2f2f2;
-  outline-offset: 3px;
+.button__wrp {
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.button__icon {
+  display: block;
+}
+.button__label {
+  margin-left: 8px;
 }
 
-.icon-print {
-  display: block;
-  width: 24px;
-  height: 24px;
+.print {
+  height: 32px;
+  margin-left: auto;
+  padding: 0 8px;
+  border-radius: 4px;
+}
+.print__icon {
+  width: 32px;
+  height: 32px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23f2f2f2' d='M19 8H5c-1.66 0-3 1.34-3 3v4c0 1.1.9 2 2 2h2v2c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-2h2c1.1 0 2-.9 2-2v-4c0-1.66-1.34-3-3-3zm-4 11H9c-.55 0-1-.45-1-1v-4h8v4c0 .55-.45 1-1 1zm4-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-2-9H7c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1z'/%3E%3C/svg%3E") center center no-repeat;
+}
+.print__label {
+  display: none;
 }
 
 .link {
@@ -121,16 +159,10 @@
   color: #f2f2f2;
   text-decoration: none;
 }
-.link:focus {
-  outline: 3px solid #f2f2f2;
-  outline-offset: 3px;
-}
-
 .link__label {
   text-decoration: underline;
   pointer-events: none;
 }
-
 .link__message {
   position: absolute;
   top: calc(50% - (2px + 0.75rem * 1.375 + 2px) / 2);
@@ -150,28 +182,18 @@
   pointer-events: none;
 }
 
-.link[lang] {
-  color: #999999;
-}
-html[lang="en"] .link[lang="en"],
-html[lang="ru"] .link[lang="ru"] {
-  color: #f2f2f2;
-}
-
 .title-1 {
   margin: 0;
   color: #f2f2f2;
   font-size: 2.5rem;
   font-weight: 700;
 }
-
 .title-2 {
   margin: 0;
   color: #f2f2f2;
   font-size: 1.75rem;
   font-weight: 700;
 }
-
 .title-3 {
   margin: 0;
   color: #f2f2f2;
@@ -188,7 +210,6 @@ html[lang="ru"] .link[lang="ru"] {
   margin: 0;
   padding: 0 0 0 1.25rem;
 }
-
 .list__item {
   margin: 0;
   padding: 0;
@@ -196,10 +217,6 @@ html[lang="ru"] .link[lang="ru"] {
 }
 .list__item + .list__item {
   margin-top: 1.25rem;
-}
-
-.bold {
-  font-weight: 700;
 }
 
 .accent {
@@ -214,7 +231,21 @@ html[lang="ru"] .link[lang="ru"] {
   margin-top: 1.25rem;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
+  .print {
+    transition: color 0.3s, background-color 0.3s;
+  }
+  .print:hover {
+    color: #1a1b1e;
+    background-color: #f2f2f2;
+  }
+  .print__icon {
+    transition: background 0.3s;
+  }
+  .print:hover .print__icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%231a1b1e' d='M19 8H5c-1.66 0-3 1.34-3 3v4c0 1.1.9 2 2 2h2v2c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-2h2c1.1 0 2-.9 2-2v-4c0-1.66-1.34-3-3-3zm-4 11H9c-.55 0-1-.45-1-1v-4h8v4c0 .55-.45 1-1 1zm4-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-2-9H7c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1z'/%3E%3C/svg%3E");
+  }
+
   .link_encrypted {
     position: relative;
   }
@@ -245,13 +276,15 @@ html[lang="ru"] .link[lang="ru"] {
   .title-1 {
     font-size: 4rem;
   }
-
   .title-2 {
     font-size: 3rem;
   }
-
   .title-3 {
     font-size: 2rem;
+  }
+
+  .print__label {
+    display: block;
   }
 }
 
@@ -260,6 +293,7 @@ html[lang="ru"] .link[lang="ru"] {
     display: none;
   }
 
+  .print,
   .link__message {
     transition-duration: 0s;
   }

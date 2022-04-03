@@ -16,15 +16,13 @@
   <meta property="twitter:title" content="{{meta.title}}">
   <meta property="twitter:description" content="{{about.text}}">
   <meta property="twitter:image" content="https://al4str.dev/person.jpg">
-  <link rel="alternate" hreflang="ru" href="https://al4str.dev/ru">
-  <link rel="alternate" hreflang="en" href="https://al4str.dev/en">
   <link rel="alternate" hreflang="x-default" href="https://al4str.dev/">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="prefetch" as="font" href="jetbrains-mono-regular.woff2">
   <link rel="prefetch" as="font" href="jetbrains-mono-bold.woff2">
-  <link rel="prefetch" as="script" href="index.js?{{version}}">
-  <link rel="stylesheet" media="print" href="print.css?{{version}}">
+  <link rel="prefetch" as="script" href="index.js">
+  <link rel="stylesheet" media="print" href="print.css">
   {{css}}
 </head>
 <body class="body">
@@ -53,45 +51,22 @@
   <span class="fade fade_top" aria-hidden="true"></span>
   <span class="fade fade_bottom" aria-hidden="true"></span>
   <article class="content">
-    <ul class="block actions">
-      <li class="actions__item">
-        <a
-          class="link"
-          lang="ru"
-          href="/ru"
-          aria-label="{{actions.ru.label}}"
-        >
-          <span class="link__label">
-            РУС
-          </span>
-        </a>
-      </li>
-      <li class="actions__item">
-        <a
-          class="link"
-          lang="en"
-          href="/en"
-          aria-label="{{actions.en.label}}"
-        >
-          <span class="link__label">
-            ENG
-          </span>
-        </a>
-      </li>
-      <li class="actions__item">
-        <button
-          class="button"
-          type="button"
-          onclick="print();"
-          aria-label="{{actions.print.label}}"
-        >
-          <span class="icon-print"></span>
-        </button>
-      </li>
-    </ul>
-    <h1 class="block title-1">
-      {{title}}
-    </h1>
+    <header class="block header">
+      <h1 class="block title-1">
+        {{title}}
+      </h1>
+      <button
+        class="button print"
+        type="button"
+        onclick="print();"
+        aria-label="{{actions.print.label}}"
+      >
+        <span class="button__wrp">
+          <span class="button__icon print__icon"></span>
+          <span class="button__label print__label">{{actions.print.label}}</span>
+        </span>
+      </button>
+    </header>
     <ul class="block list links">
       <li class="list__item">
         <a
@@ -184,10 +159,7 @@
       {{skills.web-tech.text}}
     </p>
     <p class="block text">
-      {{skills.libs.text}}
-    </p>
-    <p class="block text">
-      {{skills.tools.text}}
+      {{skills.utils.text}}
     </p>
     <p class="block text">
       {{skills.dev.text}}
@@ -202,14 +174,28 @@
       {{xp.time}}
     </p>
     <h3 class="block title-3">
-      {{xp.sep-2020-curr.title}}
+      {{xp.aug-2021-present.title}}
     </h3>
     <p class="block text">
-      {{xp.sep-2020-curr.position}}
+      {{xp.aug-2021-present.position}}
     </p>
     <ul class="block list">
       <li class="list__item">
-        {{xp.sep-2020-curr.feat-1}}
+        {{xp.aug-2021-present.feat-1}}
+      </li>
+      <li class="list__item">
+        {{xp.aug-2021-present.feat-2}}
+      </li>
+    </ul>
+    <h3 class="block title-3">
+      {{xp.sep-2020-present.title}}
+    </h3>
+    <p class="block text">
+      {{xp.sep-2020-present.position}}
+    </p>
+    <ul class="block list">
+      <li class="list__item">
+        {{xp.sep-2020-present.feat-1}}
       </li>
     </ul>
     <h3 class="block title-3">
@@ -267,9 +253,6 @@
       <li class="list__item">
         {{xp.sep-2016-oct-2017.feat-2}}
       </li>
-      <li class="list__item">
-        {{xp.sep-2016-oct-2017.feat-3}}
-      </li>
     </ul>
     <h3 class="block title-3">
       {{xp.oct-2013-aug-2016.title}}
@@ -301,6 +284,6 @@
     </ul>
   </article>
 </main>
-<script defer src="index.js?{{version}}"></script>
+<script defer src="index.js"></script>
 </body>
 </html>

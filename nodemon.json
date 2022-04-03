@@ -3,9 +3,8 @@
   "ext": "*",
   "watch": [
     "src/*",
-    "build.js",
-    "serve.js",
+    "build/*",
     "package.json"
   ],
-  "exec": "node build.js && node serve.js"
+  "exec": "node build/index.js && node build/serve.js"
 }

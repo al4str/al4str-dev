@@ -1,5 +1,4 @@
-.idea
-node_modules
-temp
-ssl
+.idea/
+node_modules/
+public/
 TODO.md
