@@ -18,16 +18,16 @@
     "not dead"
   ],
   "devDependencies": {
-    "@babel/core": "7.17.8",
-    "@babel/preset-env": "7.16.11",
-    "compression": "1.7.4",
-    "core-js": "3.21.1",
-    "csso": "5.0.3",
-    "express": "4.17.3",
-    "html-entities": "2.3.3",
-    "html-minifier-terser": "6.1.0",
-    "nodemon": "2.0.15",
-    "serve-static": "1.15.0",
-    "terser": "5.12.1"
+    "@babel/core": "^7.23.6",
+    "@babel/preset-env": "^7.23.6",
+    "compression": "^1.7.4",
+    "core-js": "^3.34.0",
+    "csso": "^5.0.5",
+    "express": "^4.18.2",
+    "html-entities": "^2.4.0",
+    "html-minifier-terser": "^7.2.0",
+    "nodemon": "^3.0.2",
+    "serve-static": "^1.15.0",
+    "terser": "^5.26.0"
   }
 }

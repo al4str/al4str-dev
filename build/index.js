@@ -1,4 +1,4 @@
-import { readFile, writeFile, copyFile } from 'node:fs/promises';
+import { readFile, writeFile, copyFile, mkdir, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { encode } from 'html-entities';
 import { transformAsync } from '@babel/core';
@@ -43,7 +43,7 @@ async function writeHTML(lang) {
     console.error('You forgot something, mate');
     console.debug(JSON.stringify(templatesLeft, null, 2));
   }
-  const htmlPath = join(PUBLIC_DIR, `${lang}.html`);
+  const htmlPath = join(PUBLIC_DIR, 'index.html');
   const minifiedHTML = await htmlMinify(replacedHTML, {
     collapseWhitespace: true,
     collapseInlineTagWhitespace: true,
@@ -61,6 +61,11 @@ async function minifyJS() {
 }
 
 (async function() {
+  try {
+    await rm(PUBLIC_DIR, { recursive: true });
+  }
+  catch (e) {}
+  await mkdir(PUBLIC_DIR, { recursive: true });
   await Promise.all([
     writeHTML('en'),
     [

@@ -67,7 +67,7 @@
   }
 
   /**
-   * @return function(Function): void
+   * @return function (cb: Function) => void
    * */
   function getThrottledRAF() {
     let queuedCallback = null;
